@@ -12,7 +12,7 @@ pipeline {
                 sh 'docker build . -t notepad/node-todoapp-test:latest'
             }
         }
-        stage('Push image on Hub'){
+        stage('Push image on DockerHub'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
