@@ -1,4 +1,4 @@
-# node-notepad-cicd
+# nodeApp-notepad-CI/CD
 
 Run these commands:
 
