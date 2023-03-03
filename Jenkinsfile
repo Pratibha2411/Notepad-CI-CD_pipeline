@@ -3,20 +3,20 @@ pipeline {
     
     stages{
         stage('Code'){
-            steps{
-                git url: 'https://github.com/LondheShubham153/node-todo-cicd.git', branch: 'master' 
+            steps{ 
+                git url: 'https://github.com/Pratibha2411/Notepad-CI-CD_pipeline.git', branch: 'main' 
             }
         }
         stage('Build and Test'){
             steps{
-                sh 'docker build . -t trainwithshubham/node-todo-test:latest'
+                sh 'docker build . -t notepad/node-todoapp-test:latest'
             }
         }
-        stage('Push'){
+        stage('Push image on Hub'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                 sh 'docker push trainwithshubham/node-todo-test:latest'
+                 sh 'docker push notepad/node-todo-test:latest'
                 }
             }
         }
